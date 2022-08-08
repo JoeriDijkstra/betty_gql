@@ -14,6 +14,6 @@ defmodule BettyGql do
   end
 
   def make_request(jwt, query) do
-
+    {jwt, query}
   end
 end

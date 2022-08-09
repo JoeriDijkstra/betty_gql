@@ -30,13 +30,6 @@ def deps do
 end
 ```
 
-## Dependencies
-This project has 2 dependencies which also need to be added to the deps in the mix.exs file:
-```elixir
-  {:jason, "~> 1.1"},
-  {:neuron, "~> 5.0.0"},
-```
-
 ## Documentation
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can

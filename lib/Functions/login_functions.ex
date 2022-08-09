@@ -1,9 +1,20 @@
 defmodule BettyGql.Functions.LoginFunctions do
+  @moduledoc """
+  This module regulates the functions needed to authenticate the user, and extract the needed data
+  """
+
   # Public Functions
+
+  @doc """
+  Gets the variables form the config. A more detailed explanation can be found here: https://github.com/JoeriDijkstra/betty_gql
+  """
   def get_login_variables do
     {build_app_url(), get_credentials()}
   end
 
+  @doc """
+  Retrieves the jwtToken from a succesfull authentication fom the Neuron map
+  """
   def extract_jwt_token(response) do
     Map.get(response, :body)["data"]["login"]["jwtToken"]
   end

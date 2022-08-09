@@ -22,7 +22,8 @@ defmodule BettyGql.MixProject do
   defp deps do
     [
       {:jason, "~> 1.1"},
-      {:neuron, "~> 5.0.0"}
+      {:neuron, "~> 5.0.0"},
+      {:ex_doc, "~> 0.28.4"}
     ]
   end
 end

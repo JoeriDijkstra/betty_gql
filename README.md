@@ -31,7 +31,7 @@ end
 ```
 
 ## Documentation
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/betty_gql>.
+Documentation and further information can be found here:
+https://hex.pm/packages/betty_gql
+https://hexdocs.pm/betty_gql/api-reference.html
 

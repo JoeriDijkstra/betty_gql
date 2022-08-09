@@ -19,7 +19,7 @@ defmodule BettyGql do
     Neuron.Config.set(url: app_url)
 
     case Neuron.query(LoginQueries.login_query(credentials)) do
-      {:ok, resp} -> {:ok, LoginFunctions.extract_jwt_token(resp)}
+      {:ok, resp} -> {:ok, LoginFunctions.authenticate(resp)}
       {:error, message} -> {:error, message}
     end
   end
@@ -27,13 +27,24 @@ defmodule BettyGql do
   @doc """
   Executes a GraphQL query which can be provided, using the JWT token that is provided. Will return the full result as a Neuron map
   """
-  def make_request(jwt \\ "", query) do
+  def make_request(query) do
     {app_url, _} = LoginFunctions.get_login_variables()
     Neuron.Config.set(url: app_url)
+    Neuron.query(query)
+  end
 
-    case jwt == "" do
-      true -> Neuron.query(query)
-      false -> Neuron.query(query, headers: [authorization: "Bearer #{jwt}"])
-    end
+  def get_values() do
+    query = """
+    query{
+      allKeyWithCheckbox{
+        results{
+          id
+          value
+          key
+        }
+      }
+    }
+    """
+    BettyGql.make_request(query)
   end
 end

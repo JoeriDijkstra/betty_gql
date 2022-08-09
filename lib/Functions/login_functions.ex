@@ -13,8 +13,16 @@ defmodule BettyGql.Functions.LoginFunctions do
   end
 
   @doc """
-  Retrieves the jwtToken from a succesfull authentication fom the Neuron map
+  Sets the authentication config
   """
+  def authenticate(resp) do
+    jwt = extract_jwt_token(resp)
+    case Neuron.Config.set(headers: [authorization: "Bearer #{jwt}"]) do
+      :ok -> jwt
+      {:error, message} -> message
+    end
+  end
+
   def extract_jwt_token(response) do
     Map.get(response, :body)["data"]["login"]["jwtToken"]
   end

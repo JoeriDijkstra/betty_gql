@@ -4,10 +4,16 @@ defmodule BettyGql.MixProject do
   def project do
     [
       app: :betty_gql,
-      version: "0.1.0",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      version: "0.2.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      package: package(),
+      deps: deps(),
+      description: description(),
+      name: "Betty GQL",
+      source_url: "https://github.com/JoeriDijkstra/betty_gql"
     ]
   end
 
@@ -16,6 +22,18 @@ defmodule BettyGql.MixProject do
     [
       extra_applications: [:logger]
     ]
+  end
+
+  defp package do
+    [
+      files: ~w(lib .formatter.exs mix.exs README*),
+      licenses: ["Apache-2.0"],
+      links: %{"GitHub" => "https://github.com/JoeriDijkstra/betty_gql"}
+    ]
+  end
+
+  defp description do
+    "This module was made as a wrapper for the data api used in Betty Blocks. This package aims to allow you to make a graphql request using a single function."
   end
 
   # Run "mix help deps" to learn about dependencies.

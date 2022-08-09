@@ -30,21 +30,7 @@ defmodule BettyGql do
   def make_request(query) do
     {app_url, _} = LoginFunctions.get_login_variables()
     Neuron.Config.set(url: app_url)
-    Neuron.query(query)
-  end
-
-  def get_values() do
-    query = """
-    query{
-      allKeyWithCheckbox{
-        results{
-          id
-          value
-          key
-        }
-      }
-    }
-    """
-    BettyGql.make_request(query)
+    {:ok, result} = Neuron.query(query)
+    Map.get(result, :body)["data"]
   end
 end
